@@ -184,25 +184,35 @@ if (req.session.user.id !== parseInt(req.params.userId)) {
 ---
 
 ## 📁 Project Structure
-´´´
+
 vulnerable-web-app/
 ├── app/
 │   ├── backend/
-│   │   ├── index.js          # Express server + vulnerable endpoints
+│   │   ├── index.js          # Express server + all vulnerable endpoints
 │   │   └── package.json
 │   └── frontend/
 │       ├── src/
-│       │   ├── App.jsx       # Main app + routing
-│       │   ├── SQLiLab.jsx   # SQL Injection lab
-│       │   ├── XSSLab.jsx    # XSS lab
-│       │   ├── CSRFLab.jsx   # CSRF lab
-│       │   ├── IDORLab.jsx   # IDOR lab
-│       │   └── BrokenAuthLab.jsx # Broken Auth lab
+│       │   ├── App.jsx           # Main app + routing
+│       │   ├── App.css           # Global styles
+│       │   ├── SQLiLab.jsx       # SQL Injection interactive lab
+│       │   ├── XSSLab.jsx        # XSS interactive lab
+│       │   ├── CSRFLab.jsx       # CSRF interactive lab
+│       │   ├── IDORLab.jsx       # IDOR interactive lab
+│       │   └── BrokenAuthLab.jsx # Broken Auth brute force lab
 │       └── package.json
-├── docs/
 ├── vulnerabilities/
-└── writeups/
-´´´
+│   ├── sqli/                 # SQL Injection notes
+│   ├── xss/                  # XSS notes
+│   ├── csrf/                 # CSRF notes
+│   ├── broken-auth/          # Broken Auth notes
+│   └── idor/                 # IDOR notes
+├── writeups/
+│   ├── sqli/                 # SQL Injection writeup
+│   ├── xss/                  # XSS writeup
+│   ├── csrf/                 # CSRF writeup
+│   ├── broken-auth/          # Broken Auth writeup
+│   └── idor/                 # IDOR writeup
+└── docs/
 ---
 
 ## 📚 References
