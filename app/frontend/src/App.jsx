@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import SQLiLab from './SQLiLab'
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState('')
@@ -75,7 +76,7 @@ function LoginPage({ onLogin }) {
   )
 }
 
-function Dashboard({ user, onLogout }) {
+function Dashboard({ user, onLogout, onExplore }) {
   const vulns = [
     { id: 'sqli', name: 'SQL Injection', icon: '🗄️', color: '#ff6b6b', desc: 'Manipula consultas SQL para extraer datos' },
     { id: 'xss', name: 'XSS', icon: '📜', color: '#ffd93d', desc: 'Inyecta scripts en el navegador de la víctima' },
@@ -113,7 +114,7 @@ function Dashboard({ user, onLogout }) {
                 <h3>{v.name}</h3>
                 <p>{v.desc}</p>
               </div>
-              <button className="btn-exploit">Explorar →</button>
+              <button className="btn-exploit" onClick={() => onExplore(v.id)}>Explorar →</button>
             </div>
           ))}
         </div>
@@ -124,13 +125,17 @@ function Dashboard({ user, onLogout }) {
 
 export default function App() {
   const [user, setUser] = useState(null)
+  const [lab, setLab] = useState(null)
 
   const handleLogout = async () => {
     await fetch('http://localhost:4000/auth/logout', { credentials: 'include' })
     setUser(null)
+    setLab(null)
   }
 
+  if (lab === 'sqli') return <SQLiLab onBack={() => setLab(null)} />
+
   return user
-    ? <Dashboard user={user} onLogout={handleLogout} />
+    ? <Dashboard user={user} onLogout={handleLogout} onExplore={setLab} />
     : <LoginPage onLogin={setUser} />
 }

@@ -76,6 +76,24 @@ app.get('/auth/logout', (req, res) => {
   res.json({ success: true });
 });
 
+// ===== RUTA: SQLi - Búsqueda vulnerable =====
+app.get('/sqli/search', (req, res) => {
+  const { username } = req.query;
+
+  // ⚠️ VULNERABLE: concatenación directa sin sanitización
+  const query = `SELECT id, username, role FROM users WHERE username = '${username}'`;
+
+  try {
+    const result = db.exec(query);
+    const users = result.length > 0
+      ? result[0].values.map(row => ({ id: row[0], username: row[1], role: row[2] }))
+      : [];
+    res.json({ success: true, query, users });
+  } catch (err) {
+    res.json({ success: false, query, error: err.message, users: [] });
+  }
+});
+
 app.get('/', (req, res) => {
   res.json({ message: '🔓 Vulnerable Web App API running' });
 });
