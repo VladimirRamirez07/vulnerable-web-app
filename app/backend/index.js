@@ -117,6 +117,26 @@ app.post('/xss/comments', (req, res) => {
   res.json({ success: true })
 })
 
+// ===== RUTA: CSRF - Cambiar email vulnerable =====
+app.get('/csrf/profile/:id', (req, res) => {
+  const { id } = req.params
+  const result = db.exec(`SELECT id, username, role FROM users WHERE id = ${id}`)
+  if (result.length > 0) {
+    const row = result[0].values[0]
+    res.json({ success: true, user: { id: row[0], username: row[1], role: row[2] } })
+  } else {
+    res.status(404).json({ success: false, error: 'User not found' })
+  }
+})
+
+app.post('/csrf/change-password', (req, res) => {
+  const { userId, newPassword } = req.body
+
+  // ⚠️ VULNERABLE: no verifica CSRF token, no verifica sesión
+  db.run(`UPDATE users SET password = '${newPassword}' WHERE id = ${userId}`)
+  res.json({ success: true, message: 'Password changed successfully' })
+})
+
 initDB().then(() => {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
