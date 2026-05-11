@@ -6,6 +6,11 @@
 ![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=flat-square&logo=react)
 ![Node.js](https://img.shields.io/badge/Backend-Node.js-339933?style=flat-square&logo=node.js)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Express](https://img.shields.io/badge/Backend-Express-000000?style=flat-square&logo=express)
+![SQLite](https://img.shields.io/badge/Database-SQLite-003B57?style=flat-square&logo=sqlite)
+![Vite](https://img.shields.io/badge/Bundler-Vite-646CFF?style=flat-square&logo=vite)
+![OWASP](https://img.shields.io/badge/Based_on-OWASP_Top_10-000000?style=flat-square)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Vladimir_Ramírez-0077B5?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/vladimir-ramírez-303a433ba)
 
 ---
 
