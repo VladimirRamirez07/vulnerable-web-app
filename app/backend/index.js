@@ -137,6 +137,26 @@ app.post('/csrf/change-password', (req, res) => {
   res.json({ success: true, message: 'Password changed successfully' })
 })
 
+// ===== RUTA: IDOR - Acceso a notas de otros usuarios =====
+app.get('/idor/notes/:userId', (req, res) => {
+  const { userId } = req.params
+
+  // ⚠️ VULNERABLE: no verifica si el usuario autenticado es el dueño
+  const result = db.exec(`SELECT n.id, n.content, u.username FROM notes n JOIN users u ON n.user_id = u.id WHERE n.user_id = ${userId}`)
+  const notes = result.length > 0
+    ? result[0].values.map(row => ({ id: row[0], content: row[1], username: row[2] }))
+    : []
+  res.json({ success: true, notes, requestedUserId: userId })
+})
+
+app.post('/idor/notes', (req, res) => {
+  const { content } = req.body
+  const userId = req.session.user?.id || 1
+
+  db.run(`INSERT INTO notes (user_id, content) VALUES (${userId}, '${content}')`)
+  res.json({ success: true })
+})
+
 initDB().then(() => {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
