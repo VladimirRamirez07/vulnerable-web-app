@@ -4,6 +4,7 @@ import SQLiLab from './SQLiLab'
 import XSSLab from './XSSLab'
 import CSRFLab from './CSRFLab'
 import IDORLab from './IDORLab'
+import BrokenAuthLab from './BrokenAuthLab'
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState('')
@@ -140,6 +141,7 @@ export default function App() {
   if (lab === 'xss') return <XSSLab onBack={() => setLab(null)} />
   if (lab === 'csrf') return <CSRFLab onBack={() => setLab(null)} user={user} />
   if (lab === 'idor') return <IDORLab onBack={() => setLab(null)} user={user} />
+  if (lab === 'broken-auth') return <BrokenAuthLab onBack={() => setLab(null)} user={user} />
 
   return user
     ? <Dashboard user={user} onLogout={handleLogout} onExplore={setLab} />

@@ -157,6 +157,28 @@ app.post('/idor/notes', (req, res) => {
   res.json({ success: true })
 })
 
+// ===== RUTA: Broken Auth - Sin rate limiting =====
+app.post('/broken-auth/login', (req, res) => {
+  const { username, password } = req.body
+
+  // ⚠️ VULNERABLE: sin rate limiting, sin bloqueo, sin captcha
+  const result = db.exec(
+    `SELECT id, username, role FROM users WHERE username = '${username}' AND password = '${password}'`
+  )
+
+  if (result.length > 0) {
+    const row = result[0].values[0]
+    res.json({ success: true, user: { id: row[0], username: row[1], role: row[2] } })
+  } else {
+    res.status(401).json({ success: false, error: 'Invalid credentials' })
+  }
+})
+
+app.get('/broken-auth/attempts', (req, res) => {
+  // Endpoint para mostrar que no hay bloqueo después de muchos intentos
+  res.json({ success: true, message: 'No rate limiting applied', attempts: 'unlimited' })
+})
+
 initDB().then(() => {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
