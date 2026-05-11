@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import SQLiLab from './SQLiLab'
+import XSSLab from './XSSLab'
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState('')
@@ -134,6 +135,7 @@ export default function App() {
   }
 
   if (lab === 'sqli') return <SQLiLab onBack={() => setLab(null)} />
+  if (lab === 'xss') return <XSSLab onBack={() => setLab(null)} />
 
   return user
     ? <Dashboard user={user} onLogout={handleLogout} onExplore={setLab} />

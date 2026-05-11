@@ -379,3 +379,37 @@ body {
   line-height: 1.5;
   word-break: break-all;
 }
+/* ── XSS ── */
+.xss-warning {
+  background: rgba(255, 211, 61, 0.08);
+  border: 1px solid rgba(255, 211, 61, 0.25);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 0.8rem;
+  color: #ffd93d;
+  font-family: 'Space Mono', monospace;
+}
+
+.comment-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.comment-author {
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+}
+
+.comment-content {
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.5;
+  word-break: break-all;
+}

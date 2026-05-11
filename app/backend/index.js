@@ -98,6 +98,25 @@ app.get('/', (req, res) => {
   res.json({ message: '🔓 Vulnerable Web App API running' });
 });
 
+// ===== RUTA: XSS - Comentarios vulnerables =====
+app.get('/xss/comments', (req, res) => {
+  const result = db.exec(`SELECT n.id, u.username, n.content FROM notes n JOIN users u ON n.user_id = u.id`)
+  const comments = result.length > 0
+    ? result[0].values.map(row => ({ id: row[0], username: row[1], content: row[2] }))
+    : []
+  res.json({ success: true, comments })
+})
+
+app.post('/xss/comments', (req, res) => {
+  const { content } = req.body
+  const userId = 1
+
+  // ⚠️ VULNERABLE: guarda HTML sin sanitizar
+  const escaped = content.replace(/'/g, "''")
+  db.run(`INSERT INTO notes (user_id, content) VALUES (${userId}, '${escaped}')`)
+  res.json({ success: true })
+})
+
 initDB().then(() => {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
