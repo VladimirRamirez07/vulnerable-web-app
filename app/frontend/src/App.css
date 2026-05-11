@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --border: #1e1e2e;
+  --text: #e2e2f0;
+  --muted: #555570;
+  --accent: #ff6b6b;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+}
+
+.page { min-height: 100vh; position: relative; overflow: hidden; }
+
+.noise {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* ── LOGIN ── */
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 20% 50%, #1a0a1e 0%, var(--bg) 60%);
+}
+
+.login-card {
+  position: relative; z-index: 1;
+  width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 0 60px rgba(255,107,107,0.05);
+}
+
+.badge {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  padding: 4px 10px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.login-header h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  font-family: 'Space Mono', monospace;
+}
+
+.login-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.field label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+}
+
+.field input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: 'Space Mono', monospace;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.field input:focus { border-color: var(--accent); }
+
+.error-msg {
+  background: rgba(255,107,107,0.1);
+  border: 1px solid rgba(255,107,107,0.3);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-family: 'Space Mono', monospace;
+}
+
+.btn-login {
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  padding: 0.85rem;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Syne', sans-serif;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  margin-top: 0.3rem;
+}
+
+.btn-login:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-login:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.login-footer {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  margin-top: 1.8rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.vuln-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--border);
+  color: var(--muted);
+}
+
+/* ── DASHBOARD ── */
+.dashboard-page {
+  background: radial-gradient(ellipse at 80% 0%, #0d1a0d 0%, var(--bg) 50%);
+}
+
+.dash-header {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(10,10,15,0.8);
+  backdrop-filter: blur(10px);
+}
+
+.dash-logo {
+  display: flex; align-items: center; gap: 0.8rem;
+  font-size: 1rem; font-weight: 700;
+}
+
+.dash-user {
+  display: flex; align-items: center; gap: 0.8rem;
+  font-family: 'Space Mono', monospace; font-size: 0.85rem;
+}
+
+.role-badge {
+  padding: 3px 10px; border-radius: 20px; font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.role-badge.admin { background: rgba(255,107,107,0.15); color: var(--accent); border: 1px solid rgba(255,107,107,0.3); }
+.role-badge.user { background: rgba(77,150,255,0.15); color: #4d96ff; border: 1px solid rgba(77,150,255,0.3); }
+
+.username { color: var(--muted); }
+
+.btn-logout {
+  background: transparent; border: 1px solid var(--border);
+  border-radius: 6px; padding: 0.4rem 0.9rem;
+  color: var(--muted); font-size: 0.8rem; cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  transition: all 0.2s;
+}
+.btn-logout:hover { border-color: var(--accent); color: var(--accent); }
+
+.dash-main {
+  position: relative; z-index: 1;
+  max-width: 900px; margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.dash-welcome { margin-bottom: 2.5rem; }
+
+.dash-welcome h2 {
+  font-size: 2rem; font-weight: 800; margin-bottom: 0.4rem;
+}
+
+.dash-welcome h2 em {
+  font-style: normal; color: var(--accent);
+}
+
+.dash-welcome p { color: var(--muted); font-family: 'Space Mono', monospace; font-size: 0.85rem; }
+
+.vuln-grid { display: flex; flex-direction: column; gap: 1rem; }
+
+.vuln-card {
+  display: flex; align-items: center; gap: 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.vuln-card:hover {
+  transform: translateX(4px);
+  box-shadow: -4px 0 20px rgba(var(--accent), 0.1);
+}
+
+.vuln-icon { font-size: 1.8rem; flex-shrink: 0; }
+
+.vuln-info { flex: 1; }
+.vuln-info h3 { font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 0.2rem; }
+.vuln-info p { font-size: 0.82rem; color: var(--muted); font-family: 'Space Mono', monospace; }
+
+.btn-exploit {
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-family: 'Space Mono', monospace;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.btn-exploit:hover { background: var(--accent); color: white; }
