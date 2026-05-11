@@ -181,14 +181,13 @@ if (req.session.user.id !== parseInt(req.params.userId)) {
 }
 ```
 
----
-
 ## 📁 Project Structure
 
+```
 vulnerable-web-app/
 ├── app/
 │   ├── backend/
-│   │   ├── index.js          # Express server + all vulnerable endpoints
+│   │   ├── index.js              # Express server + all vulnerable endpoints
 │   │   └── package.json
 │   └── frontend/
 │       ├── src/
@@ -201,19 +200,20 @@ vulnerable-web-app/
 │       │   └── BrokenAuthLab.jsx # Broken Auth brute force lab
 │       └── package.json
 ├── vulnerabilities/
-│   ├── sqli/                 # SQL Injection notes
-│   ├── xss/                  # XSS notes
-│   ├── csrf/                 # CSRF notes
-│   ├── broken-auth/          # Broken Auth notes
-│   └── idor/                 # IDOR notes
+│   ├── sqli/                     # SQL Injection notes
+│   ├── xss/                      # XSS notes
+│   ├── csrf/                     # CSRF notes
+│   ├── broken-auth/              # Broken Auth notes
+│   └── idor/                     # IDOR notes
 ├── writeups/
-│   ├── sqli/                 # SQL Injection writeup
-│   ├── xss/                  # XSS writeup
-│   ├── csrf/                 # CSRF writeup
-│   ├── broken-auth/          # Broken Auth writeup
-│   └── idor/                 # IDOR writeup
+│   ├── sqli/                     # SQL Injection writeup
+│   ├── xss/                      # XSS writeup
+│   ├── csrf/                     # CSRF writeup
+│   ├── broken-auth/              # Broken Auth writeup
+│   └── idor/                     # IDOR writeup
 └── docs/
----
+```
+
 
 ## 📚 References
 
