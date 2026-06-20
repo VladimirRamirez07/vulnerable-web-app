@@ -117,7 +117,7 @@ db.prepare("SELECT * FROM users WHERE username = ?").get(username)
 // Renders raw HTML without sanitization
 <div dangerouslySetInnerHTML={{ __html: userInput }} />
 ```
-**Exploit:** `<img src=x onerror="alert('XSS!')">` executes JavaScript in the victim's browser
+**Exploit:** `<img src=x onerror="alert('XSS!')">` executes JavaScript in the victim's browser.
 
 **Fix:** Use DOMPurify to sanitize before rendering:
 ```javascript
